@@ -7,7 +7,7 @@
 <body>
 <header class="header"><div class="container nav">
   <a class="logo" href="index.html">Fera<span>Phone</span></a>
-  <nav class="nav-links"><a class="active" href="index.html">Телефоны</a><a href="cabinet.html">Избранное</a><a id="adminLink" class="hidden" href="admin.html">Админ-панель</a></nav>
+  <nav class="nav-links"><a class="active" href="index.html">Телефоны</a><a href="cabinet.html">Избранное</a><a class="cart-link" href="cart.html">🛒 Корзина <span data-cart-count>0</span></a><a id="adminLink" class="hidden" href="admin.html">Админ-панель</a></nav>
   <div class="nav-actions"><span id="userName" class="user-name"></span><a id="authLink" class="btn btn-outline" href="auth.html">Войти</a><button id="logoutBtn" class="btn btn-dark hidden">Выйти</button></div>
 </div></header>
 <main>
@@ -16,7 +16,7 @@
 <h1>Смартфоны,<br><span>которые хочется держать в руках.</span></h1>
 <p class="hero-text">Выбирай смартфон, сравнивай характеристики, добавляй модели в избранное и оформляй покупку.</p>
 <a href="#catalog" class="btn btn-primary">Смотреть каталог</a>
-</div><div class="hero-card"><div class="hero-icon">📱</div><strong>Живой каталог</strong><span></span></div></div></section>
+</div><div class="hero-card"><div class="hero-icon">📱</div><strong>Живой каталог</strong><span>Новые модели из Firestore появляются без перезагрузки.</span></div></div></section>
 <section id="catalog" class="section"><div class="container">
 <div class="section-head"><div><p class="eyebrow">Каталог</p><h2>Смартфоны</h2></div><div id="catalogStatus" class="status"></div></div>
 <div class="filters"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Поиск по названию или описанию"></label>

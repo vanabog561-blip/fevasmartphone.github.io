@@ -44,3 +44,41 @@ function formatDate(value) {
 function imageFallback(url) {
   return url || "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80";
 }
+
+
+// ===== Корзина =====
+function getCart() {
+  try { return JSON.parse(localStorage.getItem('feraPhoneCart') || '[]'); }
+  catch { return []; }
+}
+function saveCart(cart) {
+  localStorage.setItem('feraPhoneCart', JSON.stringify(cart));
+  updateCartCount();
+}
+function cartCount() { return getCart().reduce((sum, item) => sum + Number(item.qty || 1), 0); }
+function updateCartCount() {
+  document.querySelectorAll('[data-cart-count]').forEach(el => el.textContent = cartCount());
+}
+function addToCart(product, qty=1) {
+  const cart = getCart();
+  const found = cart.find(x => x.id === product.id);
+  if (found) found.qty += qty;
+  else cart.push({
+    id: product.id, title: product.title, price: Number(product.price || 0),
+    image: product.image || '', brand: product.brand || '', qty
+  });
+  saveCart(cart);
+}
+function removeFromCart(id) { saveCart(getCart().filter(x => x.id !== id)); }
+function changeCartQty(id, delta) {
+  const cart = getCart();
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) return removeFromCart(id);
+  saveCart(cart);
+}
+function clearCart() { saveCart([]); }
+function cartTotal() { return getCart().reduce((sum, x) => sum + Number(x.price || 0) * Number(x.qty || 1), 0); }
+function moneyCart(v) { return Number(v || 0).toLocaleString('ru-RU') + ' ₸'; }
+updateCartCount();
